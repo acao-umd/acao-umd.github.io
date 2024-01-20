@@ -1,6 +1,6 @@
 # Personal Website
 
-Have you: test
+Have you:
 
 - [ ] added profile picture
 - [ ] intro/bio
