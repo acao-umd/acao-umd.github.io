@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  nodejs:
+    # fill out the configuration here
+    build: # Instructions to build the Node.js app's Docker image
+      context: . # Specifies the build context (current directory)
+      dockerfile: Dockerfile # Points to the Dockerfile
+    image: nodejs-app # Names the built image as 'nodejs-app'
+    container_name: nodejs # Sets the container's name to 'nodejs'
+
+    networks:
+      - app-network
+
+  # the nginx configuration is given below
+  # the website will run on localhost:80
+  webserver:
+    image: nginx:mainline-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - web-root:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+    depends_on:
+      - nodejs
+    networks:
+      - app-network
+
+volumes:
+  web-root:
+    driver: local
+    driver_opts:
+      type: none
+      # fill out your absolute path to your folder here
+      device: /home/anh/Documents/umd/winter2024/git/acao-umd.github.io/
+      o: bind
+
+networks:
+  app-network:
+    driver: bridge
