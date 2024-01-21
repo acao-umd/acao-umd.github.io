@@ -3,11 +3,11 @@ version: "3"
 services:
   nodejs:
     # fill out the configuration here
-    build: # Instructions to build the Node.js app's Docker image
-      context: . # Specifies the build context (current directory)
-      dockerfile: Dockerfile # Points to the Dockerfile
-    image: nodejs-app # Names the built image as 'nodejs-app'
-    container_name: nodejs # Sets the container's name to 'nodejs'
+    build: 
+      context: . 
+      dockerfile: Dockerfile 
+    image: nodejs-app 
+    container_name: nodejs 
 
     networks:
       - app-network
